@@ -10,9 +10,12 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   var _formKey = GlobalKey<FormState>();
   bool isRemember = false;
+  String email = "";
 
   void onSubmit() {
     if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      Navigator.pushReplacementNamed(context, "/tweet-list", arguments: email);
       //si tout est bon j'affiche ma popup
       displaySuccessDialog();
     }
@@ -46,6 +49,9 @@ class _LoginFormState extends State<LoginForm> {
             children: [
               Text("Connexion à Y"),
               TextFormField(
+                onSaved: (value) {
+                  email = value!;
+                },
                 decoration: InputDecoration(labelText: "Email"),
                 validator: (value) {
                   if (value == null || !EmailValidator.validate(value)) {

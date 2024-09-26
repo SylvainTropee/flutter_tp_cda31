@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:y/content-body.dart';
-import 'package:y/footer.dart';
-import 'package:y/header.dart';
+import 'package:y/auth/login-page.dart';
+import 'package:y/tweet/tweet-page.dart';
 
 void main() {
   runApp(const YApp());
@@ -13,22 +12,11 @@ class YApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("Y"),
-        ),
-        body: Column(
-          children: [
-            Header(),
-            Expanded(child: ContentBody()),
-            Footer()
-          ],
-        ),
-      ),
+      initialRoute: "/",
+      routes: {
+        "/": (context) => LoginPage(),
+        "/tweet-list": (context) => TweetPage()
+      },
     );
-
   }
-
 }
-
-

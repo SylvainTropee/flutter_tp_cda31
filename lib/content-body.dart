@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:y/login-form.dart';
-import 'package:y/tweet-card.dart';
+import 'package:y/auth/login-form.dart';
+import 'package:y/tweet/tweet-card.dart';
 
 class ContentBody extends StatelessWidget {
   @override
