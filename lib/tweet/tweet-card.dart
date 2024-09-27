@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+import '../model/tweet.dart';
 
 class TweetCard extends StatelessWidget {
+  Tweet tweet;
+
+  TweetCard(this.tweet);
 
   @override
   Widget build(BuildContext context) {
@@ -11,12 +17,10 @@ class TweetCard extends StatelessWidget {
             padding: const EdgeInsets.only(left: 8.0),
             child: SizedBox(
               width: 125,
-              child: Image.network(
-                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTK2nG24AYDm6FOEC7jIfgubO96GbRso2Xshu1f8abSYQ&s",
-                  fit: BoxFit.contain),
+              child: Image.network(tweet.profile!, fit: BoxFit.contain),
             ),
           ),
-          const Expanded(
+          Expanded(
             child: Column(
               children: [
                 Padding(
@@ -25,10 +29,9 @@ class TweetCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("LaCrevette@Chocolate",
-                          style: TextStyle(fontSize: 18)),
+                      Text(tweet.author!, style: TextStyle(fontSize: 18)),
                       Text(
-                        "50s",
+                        DateFormat("yyyy-MM-dd").format(tweet.michelDate!),
                         style: TextStyle(color: Colors.grey),
                       )
                     ],
@@ -36,8 +39,7 @@ class TweetCard extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.only(left: 8.0, right: 8),
-                  child: Text(
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."),
+                  child: Text(tweet.message!),
                 )
               ],
             ),
